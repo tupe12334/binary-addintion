@@ -1,30 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <limits.h>
-#include "get_number.h"
-#include "print_binary.h"
 #include <math.h>
-
-unsigned int my_add(unsigned int a, unsigned int b);
-
-int main()
-{
-    unsigned int numb1, numb2;
-    unsigned int result;
-
-    printf("Welcome to Ofek's task 11-A in the Open University of Israel. \n");
-
-    numb1 = get_number();
-    numb2 = get_number();
-
-    printf("Finish taking numbers successfully");
-
-    result = my_add(numb1, numb2);
-
-    printf("\nThe result of the addition is: %d", result);
-
-    return 0;
-}
 
 unsigned int my_add(unsigned int a, unsigned int b)
 {

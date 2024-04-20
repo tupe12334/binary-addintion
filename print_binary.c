@@ -2,8 +2,8 @@
 
 void print_binary(int num)
 {
-    printf("\n");
     int i = 0;
+
     /* Loop through each bit position (assuming 32-bit int) */
     for (i = 31; i >= 0; i--)
     {
