@@ -1,34 +1,87 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 #include "get_number.h"
+#include "print_binary.h"
+#include <math.h>
 
-num_to_bin_string(int num)
-{
-    while (num > 0)
-    {
-        printf("%d \n", num >> 1);
-        // Take out the right sided binary digit
-        num >>= 1;
-    }
-
-    // 1 - 0001 >> 0
-    // 2 - 0010 >> 1
-    // 3 - 0011 >> 1
-    // 4 - 0100 >> 2
-    // 5 - 0101
-    // 6 - 0110 >> 3
-    // 7 - 0111
-    // 8 - 1000
-}
+unsigned int my_add(unsigned int a, unsigned int b);
 
 int main()
 {
-    int numb1, numb2;
+    unsigned int numb1, numb2;
+    unsigned int result;
 
-    printf("Welcome to Ofek's task 11-a in the OpenU of Israel. \n");
-    num_to_bin_string(4);
-    // numb1 = get_number();
-    // numb2 = get_number();
+    printf("Welcome to Ofek's task 11-A in the Open University of Israel. \n");
+
+    numb1 = get_number();
+    numb2 = get_number();
+
+    printf("Finish taking numbers successfully");
+
+    result = my_add(numb1, numb2);
+
+    printf("\nThe result of the addition is: %d", result);
 
     return 0;
+}
+
+unsigned int my_add(unsigned int a, unsigned int b)
+{
+    /* printf("\nGot inside with %d %d\n", a, b);*/
+    unsigned int result = 0;
+    unsigned int carrier = 0;
+    unsigned int sum = 0;
+    unsigned int power = 0;
+
+    while (a > 0 || b > 0)
+    {
+        /* Get the first number of the binary int value */
+        unsigned int a_rightmost_bit = a & 1;
+        unsigned int b_rightmost_bit = b & 1;
+        /*
+            print_binary(result);
+            printf("power: %d", power);
+            printf("\n a_rightmost_bit %d", a_rightmost_bit);
+            printf("\n b_rightmost_bit %d", b_rightmost_bit);
+            printf("\n carrier %d", carrier);
+        */
+
+        sum = a_rightmost_bit + b_rightmost_bit + carrier;
+
+        carrier = 0;
+        /* printf("\n sum %d", sum); */
+        switch (sum)
+        {
+        case 0:
+            /* continue to the next iteration without any action */
+            break;
+        case 1:
+            result += pow(2, power);
+            break;
+        case 2:
+            carrier = 1;
+            break;
+        case 3:
+            result += pow(2, power);
+            carrier = 1;
+            break;
+        default:
+            printf("\nThe program encounter unmanaged scenario.\n");
+            exit(1);
+            break;
+        }
+
+        /* printf("\nresult %d", result); */
+        power++;
+        a >>= 1;
+        b >>= 1;
+    }
+    if (carrier == 1)
+    {
+        carrier = 0;
+        result += pow(2, power);
+    }
+
+    return result;
 }

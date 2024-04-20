@@ -1,7 +1,7 @@
 #define MAX_INPUT_NUMBER 255
 #define MIN_INPUT_NUMBER 0
 
-void validate_number(int number)
+void validate_number(unsigned int number)
 {
     if (number < MAX_INPUT_NUMBER && number > MIN_INPUT_NUMBER)
     {
@@ -11,9 +11,9 @@ void validate_number(int number)
     exit(1);
 }
 
-int get_number()
+unsigned get_number()
 {
-    int num = 0;
+    unsigned int num = 0;
 
     printf("Please enter a number from %d - %d: ", MIN_INPUT_NUMBER, MAX_INPUT_NUMBER);
     scanf("%d", &num);
