@@ -19,7 +19,7 @@ unsigned get_number()
 
     unsigned int num = 0;
     printf("Please enter a number from %d - %d: ", MIN_INPUT_NUMBER, MAX_INPUT_NUMBER);
-    scanf("%u", &num); // TODO replace with stdin
+    scanf("%u", &num); /* TODO replace with stdin */
     validate_number(num);
     /* printf("The current number input is: %d", num); */
 
