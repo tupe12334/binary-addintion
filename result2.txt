@@ -1,0 +1,14 @@
+Welcome to Ofek's task 11-A in the Open University of Israel. 
+Please enter a number from 0 - 255: 
+Thanks, I got: 101
+Please enter a number from 0 - 255: 
+Thanks, I got: 8
+Finish taking numbers successfully
+First number:
+00000000000000000000000001100101
+Second number:
+00000000000000000000000000001000
+Result:
+00000000000000000000000001101101
+
+The result of the addition is: 109

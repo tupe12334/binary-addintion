@@ -13,11 +13,12 @@ void validate_number(unsigned int number) {
 }
 
 unsigned int get_number() {
-  unsigned int num = 0;
+  unsigned int num;
   printf("Please enter a number from %d - %d: ", MIN_INPUT_NUMBER,
          MAX_INPUT_NUMBER);
   scanf("%u", &num);
   printf("\n");
+  printf("Thanks, I got: %d\n", num);
   validate_number(num);
 
   return num;
