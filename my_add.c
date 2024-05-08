@@ -1,93 +1,78 @@
+#include "get_number.h"
+#include "print_binary.h"
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
-#include "print_binary.h"
-#include "get_number.h"
 
 unsigned int my_add(unsigned int a, unsigned int b);
 
-int main()
-{
-    unsigned int numb1, numb2;
-    unsigned int result;
+int main() {
+  unsigned int numb1, numb2;
+  unsigned int result;
 
-    printf("Welcome to Ofek's task 11-A in the Open University of Israel. \n");
+  printf("Welcome to Ofek's task 11-A in the Open University of Israel. \n");
 
-    numb1 = get_number();
-    numb2 = get_number();
+  numb1 = get_number();
+  numb2 = get_number();
 
-    printf("Finish taking numbers successfully\n");
+  printf("Finish taking numbers successfully\n");
 
-    result = my_add(numb1, numb2);
+  result = my_add(numb1, numb2);
 
-    printf("First number:\n");
-    print_binary(numb1);
-    printf("Second number:\n");
-    print_binary(numb2);
-    printf("Result:\n");
-    print_binary(result);
+  printf("First number:\n");
+  print_binary(numb1);
+  printf("Second number:\n");
+  print_binary(numb2);
+  printf("Result:\n");
+  print_binary(result);
 
-    printf("\nThe result of the addition is: %d\n", result);
+  printf("\nThe result of the addition is: %d\n", result);
 
-    return 0;
+  return 0;
 }
 
-unsigned int my_add(unsigned int a, unsigned int b)
-{
-    /* printf("\nGot inside with %d %d\n", a, b);*/
-    unsigned int result = 0;
-    unsigned int carrier = 0;
-    unsigned int sum = 0;
-    unsigned int power = 0;
+unsigned int my_add(unsigned int a, unsigned int b) {
+  unsigned int result = 0;
+  unsigned int carrier = 0;
+  unsigned int sum = 0;
+  unsigned int power = 0;
 
-    while (a > 0 || b > 0)
-    {
-        /* Get the first number of the binary int value */
-        unsigned int a_rightmost_bit = a & 1;
-        unsigned int b_rightmost_bit = b & 1;
-        /*
-            print_binary(result);
-            printf("power: %d", power);
-            printf("\n a_rightmost_bit %d", a_rightmost_bit);
-            printf("\n b_rightmost_bit %d", b_rightmost_bit);
-            printf("\n carrier %d", carrier);
-        */
+  while (a > 0 || b > 0) {
+    /* Get the first number of the binary int value */
+    unsigned int a_rightmost_bit = a & 1;
+    unsigned int b_rightmost_bit = b & 1;
 
-        sum = a_rightmost_bit + b_rightmost_bit + carrier;
+    sum = a_rightmost_bit + b_rightmost_bit + carrier;
 
-        carrier = 0;
-        /* printf("\n sum %d", sum); */
-        switch (sum)
-        {
-        case 0:
-            /* continue to the next iteration without any action */
-            break;
-        case 1:
-            result += pow(2, power);
-            break;
-        case 2:
-            carrier = 1;
-            break;
-        case 3:
-            result += pow(2, power);
-            carrier = 1;
-            break;
-        default:
-            printf("\nThe program encounter unmanaged scenario.\n");
-            exit(1);
-            break;
-        }
-
-        /* printf("\nresult %d", result); */
-        power++;
-        a >>= 1;
-        b >>= 1;
-    }
-    if (carrier == 1)
-    {
-        carrier = 0;
-        result += pow(2, power);
+    carrier = 0;
+    switch (sum) {
+    case 0:
+      /* continue to the next iteration without any action */
+      break;
+    case 1:
+      result += pow(2, power);
+      break;
+    case 2:
+      carrier = 1;
+      break;
+    case 3:
+      result += pow(2, power);
+      carrier = 1;
+      break;
+    default:
+      printf("\nThe program encounter unmanaged scenario.\n");
+      exit(1);
+      break;
     }
 
-    return result;
+    power++;
+    a >>= 1;
+    b >>= 1;
+  }
+  if (carrier == 1) {
+    carrier = 0;
+    result += pow(2, power);
+  }
+
+  return result;
 }
